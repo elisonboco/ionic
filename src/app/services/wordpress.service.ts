@@ -18,7 +18,7 @@ export class WordpressService {
     let options = {
       observe: "response" as 'body',
       params: {
-        per_page: '5',
+        per_page: '2',
         page: ''+page
       }
     };
