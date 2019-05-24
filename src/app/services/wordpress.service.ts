@@ -46,4 +46,42 @@ export class WordpressService {
       })
     )
   }
+
+  getPages(page = 1): Observable<any[]> {
+    let options = {
+      observe: "response" as 'body',
+      params: {
+        per_page: '5',
+        page: ''+page
+      }
+    };
+ 
+    return this.http.get<any[]>(`${this.url}pages?_embed`, options).pipe(
+      map(resp => {
+        this.pages = resp['headers'].get('x-wp-totalpages');
+        this.totalPosts = resp['headers'].get('x-wp-total');
+ 
+        let data = [];
+        for (let el of resp['body']){
+          if (el['slug'].indexOf("luogo") != -1){
+            data.push(el)
+          }
+        }
+ console.log(data);
+        
+        return data;
+      })
+    )
+  }
+ 
+  getPageContent(id) {
+    return this.http.get(`${this.url}pages/${id}?_embed`).pipe(
+      map(post => {
+        
+          return post;
+        
+      })
+    )
+  }
+
 }
