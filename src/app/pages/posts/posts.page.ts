@@ -8,15 +8,17 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./posts.page.scss'],
 })
 export class PostsPage implements OnInit {
- 
+  pages = [];
   posts = [];
   page = 1;
   count = null;
+  pet = "kittens";
  
   constructor(public wp: WordpressService, private loadingCtrl: LoadingController) { }
  
   ngOnInit() {
     this.loadPosts();
+    //this.loadPages();
   }
  
   async loadPosts() {
@@ -45,5 +47,20 @@ export class PostsPage implements OnInit {
       }
     });
   }
+
+  async loadPages() {
+    let loading = await this.loadingCtrl.create({
+      message: 'Loading Data...'
+    });
+    await loading.present();
+ 
+    this.wp.getPages().subscribe(res => {
+      //this.count = this.wp.totalPages;
+      this.pages = res;
+      loading.dismiss();
+    });
+  }
+ 
+  
  
 }
