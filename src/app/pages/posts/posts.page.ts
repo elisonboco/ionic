@@ -12,7 +12,7 @@ export class PostsPage implements OnInit {
   posts = [];
   page = 1;
   count = null;
-  pet = "kittens";
+  contenuto = "eventi";
  
   constructor(public wp: WordpressService, private loadingCtrl: LoadingController) { }
  

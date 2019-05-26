@@ -25,7 +25,7 @@ export class WordpressService {
  
     return this.http.get<any[]>(`${this.url}posts?_embed`, options).pipe(
       map(resp => {
-        this.pages = resp['headers'].get('x-wp-totalpages');
+        // this.pages = resp['headers'].get('x-wp-totalpages');
         this.totalPosts = resp['headers'].get('x-wp-total');
  
         let data = resp['body'];
@@ -51,14 +51,14 @@ export class WordpressService {
     let options = {
       observe: "response" as 'body',
       params: {
-        per_page: '5',
+        per_page: '2',
         page: ''+page
       }
     };
  
-    return this.http.get<any[]>(`${this.url}pages?_embed`, options).pipe(
+    return this.http.get<any[]>(`${this.url}pages`, options).pipe(
       map(resp => {
-        this.pages = resp['headers'].get('x-wp-totalpages');
+        // this.pages = resp['headers'].get('x-wp-totalpages');
         this.totalPosts = resp['headers'].get('x-wp-total');
  
         let data = [];
@@ -75,7 +75,7 @@ export class WordpressService {
   }
  
   getPageContent(id) {
-    return this.http.get(`${this.url}pages/${id}?_embed`).pipe(
+    return this.http.get(`${this.url}pages/${id}`).pipe(
       map(post => {
         
           return post;

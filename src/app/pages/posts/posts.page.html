@@ -1,37 +1,37 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Rimini - Blog</ion-title>
+    <ion-title style="text-align:center">Rimini</ion-title>
   </ion-toolbar>
 </ion-header>
  
 <ion-content padding>
     <div padding>
-        <ion-segment [(ngModel)]="pet">
-          <ion-segment-button (click)="loadPosts()" value="kittens">
+        <ion-segment [(ngModel)]="contenuto">
+          <ion-segment-button (click)="loadPosts()" value="eventi">
             Eventi
           </ion-segment-button>
-          <ion-segment-button (click)="loadPages()" value="puppies">
+          <ion-segment-button (click)="loadPages()" value="luoghi">
             Luoghi
           </ion-segment-button>
         </ion-segment>
       </div>
 
-      <div [ngSwitch]="pet">
-          <ng-container *ngSwitchCase="'puppies'">
+      <div [ngSwitch]="contenuto">
+          <ng-container *ngSwitchCase="'luoghi'">
               <ion-card *ngFor="let post of pages">
                   <ion-card-header>
                     <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
-                    <ion-card-subtitle>{{ post.date_gmt | date }}</ion-card-subtitle>
+                    <ion-card-subtitle>Luogo di interesse</ion-card-subtitle>
                   </ion-card-header>
                    <ion-card-content>
-                    <img [src]="post.media_url">
+                    <!-- <img [src]="post.media_url"> -->
                     <div [innerHTML]="post.excerpt.rendered"></div>
                     <ion-button expand="full" fill="clear" [routerLink]="['/', 'pages', post.id]" text-right>Leggi di più...</ion-button>
                   </ion-card-content> 
                 </ion-card>
           </ng-container>
         
-          <ng-container *ngSwitchCase="'kittens'">
+          <ng-container *ngSwitchCase="'eventi'">
             <ion-card *ngFor="let post of posts">
               <ion-card-header>
                 <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>

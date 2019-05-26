@@ -14,6 +14,10 @@ export class PostPage implements OnInit {
  
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
+    this.wp.getPageContent(id).subscribe(res => {
+      this.post = res;
+    });
+    
     this.wp.getPostContent(id).subscribe(res => {
       this.post = res;
     });
