@@ -17,10 +17,10 @@ export class WordpressService {
   getPosts(page = 1): Observable<any[]> {
     let options = {
       observe: "response" as 'body',
-      params: {
-        per_page: '2',
-        page: ''+page
-      }
+      // params: {
+      //   per_page: '2',
+      //   page: ''+page
+      // }
     };
  
     return this.http.get<any[]>(`${this.url}posts?_embed`, options).pipe(
@@ -50,10 +50,10 @@ export class WordpressService {
   getPages(page = 1): Observable<any[]> {
     let options = {
       observe: "response" as 'body',
-      params: {
-        per_page: '2',
-        page: ''+page
-      }
+      // params: {
+      //   per_page: '2',
+      //   page: ''+page
+      // }
     };
  
     return this.http.get<any[]>(`${this.url}pages`, options).pipe(
